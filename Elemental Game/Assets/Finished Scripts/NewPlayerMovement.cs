@@ -7,7 +7,7 @@ using System.Collections;
 public class NewPlayerMovement : MonoBehaviour
 {
 
-	private float speed;
+	public float speed;
 	public float rawspeed;
 	public float gravity;
 	public float maxVelocityChange = 10.0f;
@@ -19,6 +19,8 @@ public class NewPlayerMovement : MonoBehaviour
 
 	public GameObject Player;
 
+	public TimeController timeController;
+
 	void Awake()
 	{
 		rb.freezeRotation = true;
@@ -26,10 +28,16 @@ public class NewPlayerMovement : MonoBehaviour
 	}
 
 	void FixedUpdate()
-	{
+    {
 
-		if (Player.GetComponent<AbilityLocalization>().CanRun && Input.GetButton("Run")) speed = rawspeed * 1.75f; //Normal or Run speed function
-		else speed = rawspeed;
+		if (Player.GetComponent<AbilityLocalization>().CanRun && Input.GetButton("Run"))
+		{
+			speed = rawspeed * 1.45f; //Normal or Run speed function
+		}
+		else 
+		{
+			speed = rawspeed;
+		}
 
 		// Calculate how fast we should be moving
 		Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -46,28 +54,24 @@ public class NewPlayerMovement : MonoBehaviour
 
 		// We apply gravity manually for more tuning control
 		rb.AddForce(new Vector3(0, -gravity * rb.mass, 0));
-	}
+	
 
-
-	void Update()
-	{
-
-		Vector3 velocity = rb.velocity;
+		//Vector3 velocity = rb.velocity;
 
 		if (grounded)
 		{   // Jump
 			//canDoubleJump = false; not work
 
-			if (Input.GetButtonDown("Jump") && Player.GetComponent<AbilityLocalization>().CanJump)
+			if (Input.GetButton("Jump") && Player.GetComponent<AbilityLocalization>().CanJump)
 			{
 				rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-				canDoubleJump = true;
 			}
+			if(!Input.GetButton("Jump")) canDoubleJump = true;
 		}
 		//Double jump hopefully if not triple randomly
 		else
 		{
-			if (Input.GetButtonDown("Jump") && canDoubleJump)
+			if (Input.GetButton("Jump") && canDoubleJump)
 			{
 				rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 				canDoubleJump = false;
