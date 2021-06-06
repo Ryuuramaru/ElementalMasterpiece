@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Jump
+  - Run
   layers:
   - Default
   - TransparentFX
