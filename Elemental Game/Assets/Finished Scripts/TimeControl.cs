@@ -13,16 +13,16 @@ public class TimeControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Clock clock = Timekeeper.instance.Clock("Root");
+        Clock clock = Timekeeper.instance.Clock("World");
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            clock.localTimeScale = slowdownFactor;
+            clock.LerpTimeScale(slowdownFactor, 0.4f);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            clock.localTimeScale = 1;
+            clock.LerpTimeScale(1, 0.4f);
         }
     }
 }

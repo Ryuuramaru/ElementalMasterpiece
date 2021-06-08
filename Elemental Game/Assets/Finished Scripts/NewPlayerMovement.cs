@@ -47,7 +47,7 @@ public class NewPlayerMovement : MonoBehaviour
 			}
 		}
 	}
-	void OnCollisionStay()
+	void OnCollisionEnter(Collision collision)
 	{
 		grounded = true;
 	}

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Jump
   - Run
+  - ImaginaryFloor
+  - SafeZone
   layers:
   - Default
   - TransparentFX
