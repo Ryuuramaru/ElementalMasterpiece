@@ -1,43 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using Chronos;
 
 public class PositionKeeper : MonoBehaviour
 {
-    private Vector3 ogPos;
+    public Vector3 ogPos;
     private Vector3 ogRotate;
 
-    public float downSpeed;
+    public float moveSpeed;
     private Rigidbody rb;
     private Clock clock;
+
+    public float lifeTime;
+    private float ogTime;
+
+    public Vector3 moveDir;
 
     void Start()
     {
         ogPos = transform.position;
         rb = gameObject.GetComponent<Rigidbody>();
-        rb.velocity = Vector3.down * downSpeed;
+        rb.velocity = moveDir * moveSpeed;
+
+        clock = Timekeeper.instance.Clock("World");
+        ogTime = clock.time;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnDrawGizmosSelected()
     {
-        if (collision.gameObject.CompareTag("ImaginaryFloor"))
+        Gizmos.DrawLine(transform.position, transform.position + moveDir * moveSpeed * lifeTime);
+    }
+
+    void Update()
+    {
+        //DEBUG
+
+        //Debug.DrawRay(ogPos, moveDir * lifeTime * moveSpeed, Color.magenta);
+
+        clock = Timekeeper.instance.Clock("World");
+
+        if(clock.time - ogTime >= lifeTime)
+        {
+            transform.position = ogPos;
+            //clock = Timekeeper.instance.Clock("World");
+            rb.velocity = moveDir * moveSpeed * clock.localTimeScale;
+            ogTime = clock.time;
+        }
+
+        /*if (collision.gameObject.CompareTag("ImaginaryFloor"))
         {
             transform.position = ogPos;
             clock = Timekeeper.instance.Clock("World");
-            rb.velocity = Vector3.down * downSpeed * clock.localTimeScale;
+            rb.velocity = Vector3.down * moveSpeed * clock.localTimeScale;
         }
 
         else if(collision.gameObject.CompareTag("Player"))
         {
             rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        clock = Timekeeper.instance.Clock("World");
-        rb.velocity = Vector3.down * downSpeed * clock.localTimeScale;
+        }*/
     }
 }
