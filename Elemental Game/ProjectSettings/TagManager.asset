@@ -8,6 +8,7 @@ TagManager:
   - Run
   - ImaginaryFloor
   - SafeZone
+  - Vignette
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - Time
   - TimeAffected
-  - 
+  - Vignette
   - 
   - 
   - 
