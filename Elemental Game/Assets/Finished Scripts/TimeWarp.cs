@@ -65,7 +65,7 @@ public class TimeWarp : MonoBehaviour
 
         if (countTime)
         {
-            availableTime -= clock.deltaTime;
+            availableTime -= Mathf.Abs(clock.deltaTime);
             if (availableTime <= 0f)
             {
                 DoNormalTime();
@@ -75,10 +75,10 @@ public class TimeWarp : MonoBehaviour
         }
         if (regenerateTime)
         {
-            if (availableTime <= maxDuration) availableTime += clock.deltaTime;
+            if (availableTime <= maxDuration) availableTime += Mathf.Abs(clock.deltaTime);
             else availableTime = maxDuration;
 
-            timePassed += clock.deltaTime;
+            timePassed += Mathf.Abs(clock.deltaTime);
         }
     }
 
