@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerTimeManager : BaseBehaviour
 {
-    public float initialTime;
+    private float initialTime;
 
     private void OnCollisionEnter(Collision collision)
     {

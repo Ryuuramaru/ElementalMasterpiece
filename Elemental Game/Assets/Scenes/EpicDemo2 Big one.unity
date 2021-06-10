@@ -728,7 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef8c3db6a97903b4d80a6bc353b90472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialTime: 0
 --- !u!114 &796285843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,7 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  gravity: 8
+  gravity: 10
   maxVelocityChange: 200
   rb: {fileID: 796285844}
   jumpHeight: 10
