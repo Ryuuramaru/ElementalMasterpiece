@@ -3,17 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Jump
+  - Run
+  - ImaginaryFloor
+  - SafeZone
+  - Vignette
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Time
+  - TimeAffected
+  - Vignette
   - 
   - 
   - 
