@@ -229,9 +229,9 @@ GameObject:
   - component: {fileID: 170844711}
   - component: {fileID: 170844710}
   - component: {fileID: 170844709}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall1
-  m_TagString: Untagged
+  m_TagString: Jump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -669,8 +669,10 @@ MonoBehaviour:
   damage: 10
   range: 100
   impactForce: 1000
+  bulletTrail: {fileID: 6649374533618092643, guid: 6f1a42e0da9160548b757ce630e0dc95, type: 3}
+  shootPoint: {fileID: 273777858}
   fpsCam: {fileID: 273777861}
-  impactEffect: {fileID: 0}
+  impactEffect: {fileID: 7458818129521609644, guid: cfad93b648e0c2a4390d6e8e948919a1, type: 3}
 --- !u!1 &506531192
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,9 +781,9 @@ GameObject:
   - component: {fileID: 546005241}
   - component: {fileID: 546005240}
   - component: {fileID: 546005239}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Jump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1118,6 +1120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowdownFactor: 0.1
+  maxDuration: 0
+  slowmoCooldown: 0
 --- !u!114 &1297893320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1398,9 +1402,9 @@ GameObject:
   - component: {fileID: 1809606876}
   - component: {fileID: 1809606875}
   - component: {fileID: 1809606874}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Jump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
