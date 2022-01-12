@@ -9,6 +9,7 @@ TagManager:
   - ImaginaryFloor
   - SafeZone
   - Vignette
+  - Pushable
   layers:
   - Default
   - TransparentFX
