@@ -1,3 +1,4 @@
+//using Microsoft.CSharp.RuntimeBinder;
 using UnityEngine;
 
 public class NewPlayerMovement : MonoBehaviour
@@ -13,11 +14,14 @@ public class NewPlayerMovement : MonoBehaviour
 	public float jumpHeight;
 	private bool grounded = false;
 
-	void Awake()
+    public bool canJump = false;
+
+    void Awake()
 	{
 		rb.freezeRotation = true;
 		rb.useGravity = false;
-	}
+
+    }
 
 	void FixedUpdate()
 	{
@@ -39,7 +43,7 @@ public class NewPlayerMovement : MonoBehaviour
 		// We apply gravity manually for more tuning control
 		rb.AddForce(new Vector3(0, -gravity * rb.mass, 0));
 
-		if (grounded)
+        if (grounded && canJump)
 		{   
 			if (Input.GetButton("Jump"))
 			{

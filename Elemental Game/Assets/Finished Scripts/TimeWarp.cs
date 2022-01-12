@@ -37,7 +37,7 @@ public class TimeWarp : MonoBehaviour
         // Use the QuickVolume method to create a volume with a priority of 100, and assign the vignette to this volume
         m_Volume = PostProcessManager.instance.QuickVolume(gameObject.layer, 100f, m_Vignette);
 
-        availableTime = maxDuration;
+        
         
     }
 
