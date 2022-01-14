@@ -53,13 +53,20 @@ public class NewPlayerMovement : MonoBehaviour
 	}
 	void OnCollisionEnter(Collision collision)
 	{
-		grounded = true;
-	}
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            grounded = true;
+        }
 
-	private void OnCollisionExit(Collision collision)
+    }
+
+    private void OnCollisionExit(Collision collision)
 	{
-		grounded = false;
-	}
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            grounded = false;
+        }
+    }
 
 	float CalculateJumpVerticalSpeed()
 	{

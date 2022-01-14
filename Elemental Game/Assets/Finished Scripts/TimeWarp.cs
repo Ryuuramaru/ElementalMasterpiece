@@ -1,7 +1,7 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.Rendering.PostProcessing;
 using Chronos;
+using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 public class TimeWarp : MonoBehaviour
 {
     PostProcessVolume m_Volume;
@@ -24,6 +24,7 @@ public class TimeWarp : MonoBehaviour
     {
         // Create an instance of a vignette
         m_Vignette = ScriptableObject.CreateInstance<Vignette>();
+
         m_Vignette.enabled.Override(true);
 
         m_Vignette.intensity.Override(0f);

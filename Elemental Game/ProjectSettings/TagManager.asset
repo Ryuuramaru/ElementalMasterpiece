@@ -10,6 +10,7 @@ TagManager:
   - SafeZone
   - Vignette
   - Pushable
+  - Floor
   layers:
   - Default
   - TransparentFX
