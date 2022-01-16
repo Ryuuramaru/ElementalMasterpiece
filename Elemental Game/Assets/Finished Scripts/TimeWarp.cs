@@ -1,12 +1,8 @@
 using System.Collections;
 using Chronos;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 public class TimeWarp : MonoBehaviour
 {
-    PostProcessVolume m_Volume;
-    Vignette m_Vignette;
-
     public float slowdownFactor;
     public float maxDuration;
     public float cooldown;
@@ -15,30 +11,15 @@ public class TimeWarp : MonoBehaviour
     private float timePassed;
     private float initialTime;
 
-    private bool canWarp;
+    public bool canWarp;
     private bool countTime = false;
     private bool regenerateTime = true;
+
+    public GameObject playerCamera;
 
 
     void Start()
     {
-        // Create an instance of a vignette
-        m_Vignette = ScriptableObject.CreateInstance<Vignette>();
-
-        m_Vignette.enabled.Override(true);
-
-        m_Vignette.intensity.Override(0f);
-
-        m_Vignette.smoothness.Override(1f);
-
-        m_Vignette.roundness.Override(0.9f);
-
-        m_Vignette.color.Override(Color.blue);
-
-        // Use the QuickVolume method to create a volume with a priority of 100, and assign the vignette to this volume
-        m_Volume = PostProcessManager.instance.QuickVolume(gameObject.layer, 100f, m_Vignette);
-
-        
         
     }
 
@@ -102,12 +83,11 @@ public class TimeWarp : MonoBehaviour
 
     void DoSlowTime()
     {
-        Clock Wclock = Timekeeper.instance.Clock("World");
+        Clock clock = Timekeeper.instance.Clock("World");
 
-        Wclock.LerpTimeScale(slowdownFactor, 0.4f);
+        clock.LerpTimeScale(slowdownFactor, 0.4f);
 
-        //StopCoroutine(VignetteLerp(0f, 0f));
-        StartCoroutine(VignetteLerp(0f, 0.4f));
+        playerCamera.GetComponent<Vignette_Cotroller>().VignetteLerp(0.4f, Color.blue, 0.4f);
     }
 
     void DoNormalTime()
@@ -116,20 +96,7 @@ public class TimeWarp : MonoBehaviour
 
         clock.LerpTimeScale(1, 0.4f);
 
-        //StopCoroutine(VignetteLerp(0f, 0f));
-        StartCoroutine(VignetteLerp(0.4f, 0f));
+        playerCamera.GetComponent<Vignette_Cotroller>().VignetteLerp(0, Color.blue, 0.4f);
     }
 
-    IEnumerator VignetteLerp(float startValue, float endValue)
-    {
-        float timeElapsed = 0;
-
-        while (timeElapsed < 0.4f)
-        {
-            m_Vignette.intensity.value = Mathf.Lerp(startValue, endValue, timeElapsed / 0.4f);
-            timeElapsed += Time.deltaTime;
-
-            yield return null;
-        }
-    }
 }
